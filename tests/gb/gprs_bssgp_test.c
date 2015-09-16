@@ -17,6 +17,7 @@
 #include <osmocom/core/prim.h>
 #include <osmocom/gprs/gprs_bssgp.h>
 #include <osmocom/gprs/gprs_ns.h>
+#include <osmocom/gprs/gprs_bssgp_bss.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,6 +59,17 @@ int gprs_ns_callback(enum gprs_ns_evt event, struct gprs_nsvc *nsvc,
 			event, msgb_bssgp_len(msg), bvci,
 			osmo_hexdump(msgb_bssgph(msg), msgb_bssgp_len(msg)));
 	return 0;
+}
+
+struct msgb *last_ns_tx_msg = NULL;
+
+/* override */
+int gprs_ns_sendmsg(struct gprs_ns_inst *nsi, struct msgb *msg)
+{
+	msgb_free(last_ns_tx_msg);
+	last_ns_tx_msg = msg;
+
+	return msgb_length(msg);
 }
 
 int bssgp_prim_cb(struct osmo_prim_hdr *oph, void *ctx)
@@ -125,6 +137,123 @@ static void test_bssgp_suspend_resume(void)
 	printf("----- %s END\n", __func__);
 }
 
+static void send_bssgp_status(enum gprs_bssgp_cause cause, uint16_t *bvci)
+{
+	struct msgb *msg = bssgp_msgb_alloc();
+	uint8_t cause_ = cause;
+
+	msgb_v_put(msg, BSSGP_PDUT_STATUS);
+	msgb_tvlv_put(msg, BSSGP_IE_CAUSE, 1, &cause_);
+	if (bvci) {
+		uint16_t bvci_ = htons(*bvci);
+		msgb_tvlv_put(msg, BSSGP_IE_BVCI, 2, (uint8_t *) &bvci_);
+	}
+
+	msgb_bssgp_send_and_free(msg);
+}
+
+static void test_bssgp_status(void)
+{
+	uint16_t bvci;
+
+	printf("----- %s START\n", __func__);
+
+	send_bssgp_status(BSSGP_CAUSE_PROTO_ERR_UNSPEC, NULL);
+	OSMO_ASSERT(last_oph.primitive == PRIM_NM_STATUS);
+
+	/* Enforce prim != PRIM_NM_STATUS */
+	last_oph.primitive = PRIM_NM_LLC_DISCARDED;
+
+	bvci = 1234;
+	send_bssgp_status(BSSGP_CAUSE_UNKNOWN_BVCI, &bvci);
+	OSMO_ASSERT(last_oph.primitive == PRIM_NM_STATUS);
+
+	printf("----- %s END\n", __func__);
+}
+
+static void test_bssgp_bad_reset()
+{
+	struct msgb *msg;
+	uint16_t bvci_be = htons(2);
+	uint8_t cause = BSSGP_CAUSE_OML_INTERV;
+
+	printf("----- %s START\n", __func__);
+	msg = bssgp_msgb_alloc();
+
+	msgb_v_put(msg, BSSGP_PDUT_BVC_RESET);
+	msgb_tvlv_put(msg, BSSGP_IE_BVCI, sizeof(bvci_be), (uint8_t *)&bvci_be);
+	msgb_tvlv_put(msg, BSSGP_IE_CAUSE, sizeof(cause), &cause);
+
+	msgb_bvci(msg) = 0xbad;
+
+	msgb_bssgp_send_and_free(msg);
+
+	printf("----- %s END\n", __func__);
+}
+
+static void test_bssgp_flow_control_bvc(void)
+{
+	struct bssgp_bvc_ctx bctx = {
+		.nsei = 0x1234,
+		.bvci = 0x5678,
+	};
+	const uint8_t  tag = 42;
+	const uint32_t bmax = 0x1022 * 100;
+	const uint32_t rate = 0xc040 / 8 * 100;
+	const uint32_t bmax_ms = bmax / 2;
+	const uint32_t rate_ms = rate / 2;
+	uint8_t  ratio = 0x78;
+	uint32_t qdelay = 0x1144 * 10;
+	int rc;
+
+	static uint8_t expected_simple_msg[] = {
+		0x26,
+		0x1e, 0x81, 0x2a,		/* tag */
+		0x05, 0x82, 0x10, 0x22,		/* Bmax */
+		0x03, 0x82, 0xc0, 0x40,		/* R */
+		0x01, 0x82, 0x08, 0x11,		/* Bmax_MS */
+		0x1c, 0x82, 0x60, 0x20,		/* R_MS */
+	};
+
+	static uint8_t expected_ext_msg[] = {
+		0x26,
+		0x1e, 0x81, 0x2a,		/* tag */
+		0x05, 0x82, 0x10, 0x22,		/* Bmax */
+		0x03, 0x82, 0xc0, 0x40,		/* R */
+		0x01, 0x82, 0x08, 0x11,		/* Bmax_MS */
+		0x1c, 0x82, 0x60, 0x20,		/* R_MS */
+		0x3c, 0x81, 0x78,		/* ratio */
+		0x06, 0x82, 0x11, 0x44,		/* Qdelay */
+	};
+
+	printf("----- %s START\n", __func__);
+
+	rc = bssgp_tx_fc_bvc(&bctx, tag, bmax, rate, bmax_ms, rate_ms,
+		NULL, NULL);
+
+	OSMO_ASSERT(rc >= 0);
+	OSMO_ASSERT(last_ns_tx_msg != NULL);
+	printf("Got message: %s\n", msgb_hexdump(last_ns_tx_msg));
+	OSMO_ASSERT(msgb_length(last_ns_tx_msg) == sizeof(expected_simple_msg));
+	OSMO_ASSERT(0 == memcmp(msgb_data(last_ns_tx_msg),
+			expected_simple_msg, sizeof(expected_simple_msg)));
+
+	rc = bssgp_tx_fc_bvc(&bctx, tag, bmax, rate, bmax_ms, rate_ms,
+		&ratio, &qdelay);
+
+	OSMO_ASSERT(rc >= 0);
+	OSMO_ASSERT(last_ns_tx_msg != NULL);
+	printf("Got message: %s\n", msgb_hexdump(last_ns_tx_msg));
+	OSMO_ASSERT(msgb_length(last_ns_tx_msg) == sizeof(expected_ext_msg));
+	OSMO_ASSERT(0 == memcmp(msgb_data(last_ns_tx_msg),
+			expected_ext_msg, sizeof(expected_ext_msg)));
+
+	msgb_free(last_ns_tx_msg);
+	last_ns_tx_msg = NULL;
+
+	printf("----- %s END\n", __func__);
+}
+
 static struct log_info info = {};
 
 int main(int argc, char **argv)
@@ -146,6 +275,9 @@ int main(int argc, char **argv)
 
 	printf("===== BSSGP test START\n");
 	test_bssgp_suspend_resume();
+	test_bssgp_status();
+	test_bssgp_bad_reset();
+	test_bssgp_flow_control_bvc();
 	printf("===== BSSGP test END\n\n");
 
 	exit(EXIT_SUCCESS);

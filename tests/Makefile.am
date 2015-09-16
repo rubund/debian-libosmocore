@@ -1,4 +1,4 @@
-AM_CPPFLAGS = -I$(top_srcdir)/include
+AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_builddir)/include
 AM_CFLAGS = -Wall
 
 check_PROGRAMS = timer/timer_test sms/sms_test ussd/ussd_test		\
@@ -16,13 +16,15 @@ check_PROGRAMS += msgfile/msgfile_test
 endif
 
 utils_utils_test_SOURCES = utils/utils_test.c
-utils_utils_test_LDADD = $(top_builddir)/src/libosmocore.la
+utils_utils_test_LDADD = $(top_builddir)/src/libosmocore.la $(top_builddir)/src/gsm/libosmogsm.la
 
 a5_a5_test_SOURCES = a5/a5_test.c
 a5_a5_test_LDADD = $(top_builddir)/src/libosmocore.la $(top_builddir)/src/gsm/libosmogsm.la
+a5_a5_test_LDFLAGS = -static
 
-kasumi_kasumi_test_SOURCES = kasumi/kasumi_test.c ../src/gsm/kasumi.c
+kasumi_kasumi_test_SOURCES = kasumi/kasumi_test.c
 kasumi_kasumi_test_LDADD = $(top_builddir)/src/libosmocore.la $(top_builddir)/src/gsm/libosmogsm.la
+kasumi_kasumi_test_LDFLAGS = -static
 
 comp128_comp128_test_SOURCES = comp128/comp128_test.c
 comp128_comp128_test_LDADD = $(top_builddir)/src/libosmocore.la $(top_builddir)/src/gsm/libosmogsm.la
@@ -78,7 +80,7 @@ logging_logging_test_LDADD = $(top_builddir)/src/libosmocore.la
 fr_fr_test_SOURCES = fr/fr_test.c
 fr_fr_test_LDADD = $(top_builddir)/src/libosmocore.la $(top_builddir)/src/gb/libosmogb.la $(LIBRARY_DL)
 
-loggingrb_loggingrb_test_SOURCES = logging/logging_test.c
+loggingrb_loggingrb_test_SOURCES = loggingrb/loggingrb_test.c
 loggingrb_loggingrb_test_LDADD = $(top_builddir)/src/libosmocore.la $(top_builddir)/src/vty/libosmovty.la
 
 strrb_strrb_test_SOURCES = strrb/strrb_test.c

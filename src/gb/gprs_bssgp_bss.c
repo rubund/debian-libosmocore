@@ -34,6 +34,8 @@
 
 #include "common_vty.h"
 
+#define GSM_IMSI_LENGTH 17
+
 uint8_t *bssgp_msgb_tlli_put(struct msgb *msg, uint32_t tlli)
 {
 	uint32_t _tlli = htonl(tlli);
@@ -315,7 +317,7 @@ int bssgp_tx_bvc_reset(struct bssgp_bvc_ctx *bctx, uint16_t bvci, uint8_t cause)
  */
 int bssgp_tx_fc_bvc(struct bssgp_bvc_ctx *bctx, uint8_t tag,
 		    uint32_t bucket_size, uint32_t bucket_leak_rate,
-		    uint16_t bmax_default_ms, uint32_t r_default_ms,
+		    uint32_t bmax_default_ms, uint32_t r_default_ms,
 		    uint8_t *bucket_full_ratio, uint32_t *queue_delay_ms)
 {
 	struct msgb *msg;
@@ -325,19 +327,19 @@ int bssgp_tx_fc_bvc(struct bssgp_bvc_ctx *bctx, uint8_t tag,
 
 	if ((bucket_size / 100) > 0xffff)
 		return -EINVAL;
-	e_bucket_size = bucket_size / 100;
+	e_bucket_size = htons(bucket_size / 100);
 
 	if ((bucket_leak_rate * 8 / 100) > 0xffff)
 		return -EINVAL;
-	e_leak_rate = (bucket_leak_rate * 8) / 100;
+	e_leak_rate = htons((bucket_leak_rate * 8) / 100);
 
 	if ((bmax_default_ms / 100) > 0xffff)
 		return -EINVAL;
-	e_bmax_default_ms = bmax_default_ms / 100;
+	e_bmax_default_ms = htons(bmax_default_ms / 100);
 
 	if ((r_default_ms * 8 / 100) > 0xffff)
 		return -EINVAL;
-	e_r_default_ms = (r_default_ms * 8) / 100;
+	e_r_default_ms = htons((r_default_ms * 8) / 100);
 
 	if (queue_delay_ms) {
 		if ((*queue_delay_ms / 10) > 60000)
@@ -345,7 +347,7 @@ int bssgp_tx_fc_bvc(struct bssgp_bvc_ctx *bctx, uint8_t tag,
 		else if (*queue_delay_ms == 0xFFFFFFFF)
 			e_queue_delay = 0xFFFF;
 		else
-			e_queue_delay = *queue_delay_ms / 10;
+			e_queue_delay = htons(*queue_delay_ms / 10);
 	}
 
 	msg = bssgp_msgb_alloc();
@@ -498,8 +500,8 @@ int bssgp_rx_paging(struct bssgp_paging_info *pinfo,
 	if (!TLVP_PRESENT(&tp, BSSGP_IE_IMSI))
 		goto err_mand_ie;
 	if (!pinfo->imsi)
-		pinfo->imsi = talloc_zero_size(pinfo, 16);
-	gsm48_mi_to_string(pinfo->imsi, sizeof(pinfo->imsi),
+		pinfo->imsi = talloc_zero_size(pinfo, GSM_IMSI_LENGTH);
+	gsm48_mi_to_string(pinfo->imsi, GSM_IMSI_LENGTH,
 			   TLVP_VAL(&tp, BSSGP_IE_IMSI),
 			   TLVP_LEN(&tp, BSSGP_IE_IMSI));
 

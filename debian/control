@@ -33,54 +33,63 @@ Package: libosmocodec0
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Osmo codec library
 
 Package: libosmocore6
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Osmo Core library
 
-Package: libosmogb3
+Package: libosmogb4
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Osmo GPRS GB library
 
 Package: libosmogsm5
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Osmo GSM utility library
 
-Package: libosmovty1
+Package: libosmovty2
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Osmo VTY library
 
 Package: libosmoctrl0
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Osmo control library
 
 Package: libosmosim0
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Osmo SIM library
 
 Package: libosmocore-dev
 Section: libdevel
 Architecture: any
 Depends: ${misc:Depends}, libosmocore
+Multi-Arch: same
 Description: Development headers for Open Source MObile COMmunications CORE library
 
 Package: libosmocore-utils
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libosmocore
+Multi-Arch: same
 Description: Utilities for gsm
 
 Package: libosmocore-dbg
@@ -88,4 +97,5 @@ Architecture: any
 Section: debug
 Priority: extra
 Depends: libosmocore (= ${binary:Version}), ${misc:Depends}
+Multi-Arch: same
 Description: Debug symbols for Open Source MObile COMmunications CORE library
