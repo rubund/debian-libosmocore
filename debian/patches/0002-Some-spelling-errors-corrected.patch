@@ -1,0 +1,36 @@
+From ea0f2efc86386cde70f4475cbdca6140a78dc778 Mon Sep 17 00:00:00 2001
+From: Ruben Undheim <ruben.undheim@gmail.com>
+Date: Wed, 16 Sep 2015 19:02:35 +0200
+Subject: Some spelling errors corrected
+
+---
+ src/logging.c           | 2 +-
+ src/sim/card_fs_tetra.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/logging.c b/src/logging.c
+index 20b0596..899d4b6 100644
+--- a/src/logging.c
++++ b/src/logging.c
+@@ -125,7 +125,7 @@ const char *loglevel_descriptions[LOGLEVEL_DEFS+1] = {
+ 	"Don't use. It doesn't log anything",
+ 	"Log debug messages and higher levels",
+ 	"Log informational messages and higher levels",
+-	"Log noticable messages and higher levels",
++	"Log noticeable messages and higher levels",
+ 	"Log error messages and higher levels",
+ 	"Log only fatal messages",
+ 	NULL,
+diff --git a/src/sim/card_fs_tetra.c b/src/sim/card_fs_tetra.c
+index 625adbd..657e55f 100644
+--- a/src/sim/card_fs_tetra.c
++++ b/src/sim/card_fs_tetra.c
+@@ -204,7 +204,7 @@ static const struct osim_file_desc sim_ef_in_tetra[] = {
+ 	EF_LIN_FIX_N(0x6F2B, SFI_NONE, "EF.MSGEXT", F_OPTIONAL, 16, 16,
+ 		"Message Extension"),
+ 	EF_LIN_FIX_N(0x6F2C, SFI_NONE, "EF.EADDR", 0, 17, 17,
+-		"Emergency adresses"),
++		"Emergency addresses"),
+ 	EF_TRANSP_N(0x6F2D, SFI_NONE, "EF.EINFO", 0, 2, 2,
+ 		"Emergency call information"),
+ 	EF_LIN_FIX_N(0x6F2E, SFI_NONE, "EF.DMOCh", F_OPTIONAL, 4, 4,
