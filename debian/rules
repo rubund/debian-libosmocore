@@ -6,6 +6,7 @@
 DEBIAN  := $(shell dpkg-parsechangelog | grep ^Version: | cut -d' ' -f2)
 DEBVERS := $(shell echo '$(DEBIAN)' | cut -d- -f1)
 VERSION := $(shell echo '$(DEBVERS)' | sed -e 's/[+-].*//' -e 's/~//g')
+CHANGELOG_DATE := $(shell date -d "`dpkg-parsechangelog --show-field Date`" +"%d %B %Y")
 
 export DEB_BUILD_HARDENING=1
 
@@ -26,3 +27,8 @@ override_dh_auto_test:
 override_dh_autoreconf:
 	echo $(VERSION) > .tarball-version
 	dh_autoreconf
+
+override_dh_installman:
+	cd debian/man ; CHANGELOG_DATE="$(CHANGELOG_DATE)" ./genmanpages.sh
+	dh_installman
+
