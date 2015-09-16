@@ -107,7 +107,6 @@ Package: libosmocore-utils
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libosmocore
-Multi-Arch: same
 Description: Utilities for gsm
 
 Package: libosmocore-dbg
