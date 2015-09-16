@@ -95,6 +95,14 @@ Depends: libosmocodec0 (= ${binary:Version}),
 Multi-Arch: same
 Description: Development headers for Open Source MObile COMmunications CORE library
 
+#Package: libosmocore-doc
+#Section: doc
+#Architecture: all
+#Depends: ${misc:Depends}
+#Multi-Arch: same
+#Description: Docuementation for libosmocore
+
+
 Package: libosmocore-utils
 Section: utils
 Architecture: any
