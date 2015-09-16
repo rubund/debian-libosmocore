@@ -26,6 +26,8 @@ Depends: libosmocodec0 (= ${binary:Version}),
          libosmogb4 (= ${binary:Version}),
          libosmogsm5 (= ${binary:Version}),
          libosmovty2 (= ${binary:Version}),
+         libosmoctrl0 (= ${binary:Version}),
+         libosmosim0 (= ${binary:Version}),
          ${misc:Depends}
 Description: Metapackage for all libraries from libosmocore
  Open Source MObile COMmunications CORE library
@@ -82,7 +84,14 @@ Description: Osmo SIM library
 Package: libosmocore-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libosmocore
+Depends: libosmocodec0 (= ${binary:Version}),
+         libosmocore6 (= ${binary:Version}),
+         libosmogb4 (= ${binary:Version}),
+         libosmogsm5 (= ${binary:Version}),
+         libosmovty2 (= ${binary:Version}),
+         libosmoctrl0 (= ${binary:Version}),
+         libosmosim0 (= ${binary:Version}),
+         ${misc:Depends}
 Multi-Arch: same
 Description: Development headers for Open Source MObile COMmunications CORE library
 
