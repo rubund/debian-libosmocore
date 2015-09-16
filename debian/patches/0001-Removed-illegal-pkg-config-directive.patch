@@ -1,0 +1,21 @@
+From 24bf5889ca5f902a2bda6c80bd273db99a5f39a6 Mon Sep 17 00:00:00 2001
+From: Ruben Undheim <ruben.undheim@gmail.com>
+Date: Wed, 16 Sep 2015 19:01:00 +0200
+Subject: Removed illegal pkg-config directive
+
+Gets rid of pkg-config-bad-directive lintian
+---
+ libosmogb.pc.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libosmogb.pc.in b/libosmogb.pc.in
+index 33cacaf..4fc2547 100644
+--- a/libosmogb.pc.in
++++ b/libosmogb.pc.in
+@@ -7,5 +7,5 @@ Name: Osmocom GPRS Gb Library
+ Description: Osmocom GPRS Gb Interface (NS/BSSGP) Library
+ Version: @VERSION@
+ Libs: -L${libdir} -losmogb -losmovty
+-Cflags: -I${includedir}/ -fno-strict-aliasing
++Cflags: -I${includedir}/
+ 
