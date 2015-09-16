@@ -121,6 +121,7 @@ libosmogsm.so.5 libosmogsm5 #MINVER#
  gsm48_generate_mid_from_imsi@LIBOSMOGSM_1.0 0.8.0
  gsm48_generate_mid_from_tmsi@LIBOSMOGSM_1.0 0.8.0
  gsm48_mi_to_string@LIBOSMOGSM_1.0 0.8.0
+ gsm48_mi_type_name@LIBOSMOGSM_1.0 0.8.3
  gsm48_mm_att_tlvdef@LIBOSMOGSM_1.0 0.8.0
  gsm48_number_of_paging_subchannels@LIBOSMOGSM_1.0 0.8.0
  gsm48_parse_ra@LIBOSMOGSM_1.0 0.8.0
@@ -148,6 +149,7 @@ libosmogsm.so.5 libosmogsm5 #MINVER#
  gsm_septets2octets@LIBOSMOGSM_1.0 0.8.0
  ipa_ccm_idtag_name@LIBOSMOGSM_1.0 0.8.0
  ipa_ccm_idtag_parse@LIBOSMOGSM_1.0 0.8.0
+ ipa_ccm_idtag_parse_off@LIBOSMOGSM_1.0 0.8.3
  ipa_ccm_rcvmsg_base@LIBOSMOGSM_1.0 0.8.0
  ipa_ccm_rcvmsg_bts_base@LIBOSMOGSM_1.0 0.8.0
  ipa_ccm_send_id_ack@LIBOSMOGSM_1.0 0.8.0
@@ -197,6 +199,8 @@ libosmogsm.so.5 libosmogsm5 #MINVER#
  osmo_a5@LIBOSMOGSM_1.0 0.8.0
  osmo_a5_1@LIBOSMOGSM_1.0 0.8.0
  osmo_a5_2@LIBOSMOGSM_1.0 0.8.0
+ osmo_apn_qualify@LIBOSMOGSM_1.0 0.8.3
+ osmo_apn_qualify_from_imsi@LIBOSMOGSM_1.0 0.8.3
  osmo_auth_alg_name@LIBOSMOGSM_1.0 0.8.0
  osmo_auth_alg_parse@LIBOSMOGSM_1.0 0.8.0
  osmo_auth_gen_vec@LIBOSMOGSM_1.0 0.8.0
