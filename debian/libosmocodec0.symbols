@@ -1,0 +1,13 @@
+libosmocodec.so.0 libosmocodec0 #MINVER#
+ gsm610_bitorder@Base 0.8.0
+ gsm620_unvoiced_bitorder@Base 0.8.0
+ gsm620_voiced_bitorder@Base 0.8.0
+ gsm660_bitorder@Base 0.8.0
+ gsm690_10_2_bitorder@Base 0.8.0
+ gsm690_12_2_bitorder@Base 0.8.0
+ gsm690_4_75_bitorder@Base 0.8.0
+ gsm690_5_15_bitorder@Base 0.8.0
+ gsm690_5_9_bitorder@Base 0.8.0
+ gsm690_6_7_bitorder@Base 0.8.0
+ gsm690_7_4_bitorder@Base 0.8.0
+ gsm690_7_95_bitorder@Base 0.8.0

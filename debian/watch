@@ -1,0 +1,2 @@
+version=3
+https://github.com/osmocom/libosmocore/releases /osmocom/libosmocore/archive/(\d\S+)\.tar\.(?:bz2|gz|xz)

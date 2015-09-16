@@ -1,0 +1,17 @@
+libosmoctrl.so.0 libosmoctrl0 #MINVER#
+ ctrl_cmd_cpy@Base 0.8.0
+ ctrl_cmd_create@Base 0.8.0
+ ctrl_cmd_def_is_zombie@Base 0.8.0
+ ctrl_cmd_def_make@Base 0.8.0
+ ctrl_cmd_def_send@Base 0.8.0
+ ctrl_cmd_exec@Base 0.8.0
+ ctrl_cmd_handle@Base 0.8.0
+ ctrl_cmd_install@Base 0.8.0
+ ctrl_cmd_make@Base 0.8.0
+ ctrl_cmd_parse@Base 0.8.0
+ ctrl_cmd_send@Base 0.8.0
+ ctrl_cmd_send_to_all@Base 0.8.0
+ ctrl_cmd_trap@Base 0.8.0
+ ctrl_interface_setup@Base 0.8.0
+ ctrl_node_vec@Base 0.8.0
+ ctrl_parse_get_num@Base 0.8.0
