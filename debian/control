@@ -30,7 +30,11 @@ Depends: libosmocodec0 (= ${binary:Version}),
          libosmosim0 (= ${binary:Version}),
          ${misc:Depends}
 Description: Metapackage for all libraries from libosmocore
- Open Source MObile COMmunications CORE library
+ The libraries that are installed when this package is installed contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
 
 Package: libosmocodec0
 Architecture: any
@@ -38,6 +42,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Osmo codec library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ The libosmocodec library in particular contains ..
 
 Package: libosmocore6
 Architecture: any
@@ -45,6 +56,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Osmo Core library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ The libosmocore6 library in particular contains ..
 
 Package: libosmogb4
 Architecture: any
@@ -52,6 +70,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Osmo GPRS GB library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ The libosmogb library in particular contains ..
 
 Package: libosmogsm5
 Architecture: any
@@ -59,6 +84,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Osmo GSM utility library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ The libosmogsm library in particular contains ..
 
 Package: libosmovty2
 Architecture: any
@@ -66,6 +98,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Osmo VTY library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ The libosmovty library in particular contains ..
 
 Package: libosmoctrl0
 Architecture: any
@@ -73,6 +112,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Osmo control library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ The libosmoctrl library in particular contains ..
 
 Package: libosmosim0
 Architecture: any
@@ -80,6 +126,13 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: Osmo SIM library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ The libosmosim library in particular contains ..
 
 Package: libosmocore-dev
 Section: libdevel
@@ -94,6 +147,10 @@ Depends: libosmocodec0 (= ${binary:Version}),
          ${misc:Depends}
 Multi-Arch: same
 Description: Development headers for Open Source MObile COMmunications CORE library
+ The headears that are installed with this package may be used to develop
+ with any of the libosmocore libraries.
+ .
+ Also static libraries are installed with this package. 
 
 #Package: libosmocore-doc
 #Section: doc
@@ -108,6 +165,15 @@ Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libosmocore
 Description: Utilities for gsm
+ This package contains a program for frequency calculation for GSM called
+ 'osmo-arfcn' and a program called 'osmo-auc-gen' that is used for testing
+ GSM authentication.
+ .
+ They use the libosmocore library. The libosmocore library contain various
+ utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.  
 
 Package: libosmocore-dbg
 Architecture: any
@@ -116,3 +182,9 @@ Priority: extra
 Depends: libosmocore (= ${binary:Version}), ${misc:Depends}
 Multi-Arch: same
 Description: Debug symbols for Open Source MObile COMmunications CORE library
+ This contains the debug symbols for all the libraries that are part of
+ libosmocore. The libosmocore library contain various utility functions that
+ were originally developed as part of the OpenBSC project, but which are of a
+ more generic nature and thus useful to (at least) other programs that are 
+ developed in the sphere of Free Software / Open Source mobile communications.
+
