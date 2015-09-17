@@ -11,6 +11,7 @@ Build-Depends: debhelper (>= 9),
                libdpkg-perl,
                git,
                doxygen,
+               txt2man,
                libpcsclite-dev,
                pkg-config
 Standards-Version: 3.9.6
