@@ -76,7 +76,8 @@ Description: Osmo Core library
 Package: libosmocore-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}, libosmocore6, libjs-jquery
+Depends: ${misc:Depends}, libosmocore6, libjs-jquery, libosmocodec-doc,
+         libosmogsm-doc, libosmovty-doc
 Description: Documentation for the Osmo Core library
  This is part of the libosmocore "meta"-library. The libosmocore library contain
  various utility functions that were originally developed as part of the OpenBSC
@@ -203,7 +204,7 @@ Description: Development headers for Open Source MObile COMmunications CORE libr
 Package: libosmocore-utils
 Section: utils
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libosmocore
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Utilities for gsm
  This package contains a program for frequency calculation for GSM called
  'osmo-arfcn' and a program called 'osmo-auc-gen' that is used for testing
