@@ -51,6 +51,19 @@ Description: Osmo codec library
  .
  The libosmocodec library in particular contains ..
 
+Package: libosmocodec-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, libosmocodec0
+Description: Documentation for the osmo codec library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ This package contains the documentation for the libosmocodec library.
+
 Package: libosmocore6
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -64,6 +77,19 @@ Description: Osmo Core library
  mobile communications.
  .
  The libosmocore6 library in particular contains ..
+
+Package: libosmocore-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, libosmocore6
+Description: Documentation for the Osmo Core library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ This package contains the documentation for the libosmocore library.
 
 Package: libosmogb4
 Architecture: any
@@ -93,6 +119,19 @@ Description: Osmo GSM utility library
  .
  The libosmogsm library in particular contains ..
 
+Package: libosmogsm-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, libosmogsm5
+Description: Documentation for the Osmo GSM utility library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ This package contains the documentation for the libosmogsm library.
+
 Package: libosmovty2
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -106,6 +145,19 @@ Description: Osmo VTY library
  mobile communications.
  .
  The libosmovty library in particular contains ..
+
+Package: libosmovty-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, libosmovty2
+Description: Documentation for the Osmo VTY library
+ This is part of the libosmocore "meta"-library. The libosmocore library contain
+ various utility functions that were originally developed as part of the OpenBSC
+ project, but which are of a more generic nature and thus useful to (at least)
+ other programs that are developed in the sphere of Free Software / Open Source
+ mobile communications.
+ .
+ This package contains the documentation for the libosmovty library.
 
 Package: libosmoctrl0
 Architecture: any
@@ -152,14 +204,6 @@ Description: Development headers for Open Source MObile COMmunications CORE libr
  with any of the libosmocore libraries.
  .
  Also static libraries are installed with this package. 
-
-#Package: libosmocore-doc
-#Section: doc
-#Architecture: all
-#Depends: ${misc:Depends}
-#Multi-Arch: same
-#Description: Docuementation for libosmocore
-
 
 Package: libosmocore-utils
 Section: utils
