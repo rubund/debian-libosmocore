@@ -47,4 +47,10 @@ override_dh_clean:
 	$(RM) src/crc8gen.c
 	$(RM) tests/package.m4
 	$(RM) tests/testsuite
+	$(RM) -r doc/codec/
+	$(RM) -r doc/core/
+	$(RM) -r doc/gsm/
+	$(RM) -r doc/vty/html/
+	$(RM) -r doc/vty/latex/
+
 
