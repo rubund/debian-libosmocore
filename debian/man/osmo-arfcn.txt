@@ -1,14 +1,24 @@
 NAME
-  osmo-arfcn - blabla
+  osmo-arfcn - Utility program for ARFCN / frequency calculations
 
 
 SYNOPSIS
-  osmo-arfcn [options]
+  osmo-arfcn [-h] [-p] [-a arfcn] [-f freq] [-u|-d]
 
 
 
 OPTIONS
+   -h  Help
 
+   -p  PCS
+
+   -a <arfcn>  Specify ARFCN
+
+   -f <freq>
+
+   -u  uplink
+
+   -d  downlink
 
 
 AUTHOR

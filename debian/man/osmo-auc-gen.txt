@@ -1,5 +1,5 @@
 NAME
-  osmo-auc-gen - blabla
+  osmo-auc-gen - GSM/GPRS/3G authentication testing tool
 
 
 SYNOPSIS
@@ -8,6 +8,19 @@ SYNOPSIS
 
 
 OPTIONS
+
+ -2,--2g         Use 2G (GSM) authentication
+ -3,--3g         Use 3G (UMTS) authentication
+ -a,--algorithm  Specify name of the algorithm
+ -k,--key        Specify Ki / K
+ -o,--opc        Specify OPC (only for 3G)
+ -O,--op         Specify OP (only for 3G)
+ -f,--amf        Specify AMF (only for 3G)
+ -s,--sqn        Specify SQN (only for 3G)
+ -A,--auts       Specify AUTS (only for 3G)
+ -r,--rand       Specify random value
+ -I,--ipsec      Output in triplets.dat format for strongswan
+
 
 
 
