@@ -20,15 +20,6 @@ override_dh_strip:
 override_dh_install:
 	sed -i "/dependency_libs/ s/'.*'/''/" `find . -name '*.la'`
 	dh_install
-	# Use jquery from libjs-jquery
-	rm debian/libosmocore-doc/usr/share/doc/libosmocore/core/html/jquery.js
-	rm debian/libosmocodec-doc/usr/share/doc/libosmocore/codec/html/jquery.js
-	rm debian/libosmovty-doc/usr/share/doc/libosmocore/vty/html/jquery.js
-	rm debian/libosmogsm-doc/usr/share/doc/libosmocore/gsm/html/jquery.js
-	ln -sf /usr/share/javascript/jquery/jquery.js debian/libosmocore-doc/usr/share/doc/libosmocore/core/html/jquery.js
-	ln -sf /usr/share/javascript/jquery/jquery.js debian/libosmocodec-doc/usr/share/doc/libosmocore/codec/html/jquery.js
-	ln -sf /usr/share/javascript/jquery/jquery.js debian/libosmovty-doc/usr/share/doc/libosmocore/vty/html/jquery.js
-	ln -sf /usr/share/javascript/jquery/jquery.js debian/libosmogsm-doc/usr/share/doc/libosmocore/gsm/html/jquery.js
 
 # Print test results in case of a failure
 override_dh_auto_test:
